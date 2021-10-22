@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_weather_app/api/weather_api.dart';
 import 'package:flutter_weather_app/models/weather_forecast_daily.dart';
+import 'package:flutter_weather_app/utils/constants.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
@@ -29,7 +31,48 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(Constants.BASE_NAME),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.my_location),
+          onPressed: () {  },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.location_city),
+            onPressed: () {  },
+          ),
+        ],
+      ),
+      body: ListView(
+        children: [
+          Container(
+            child: FutureBuilder<WeatherForecast>(
+              future: forecastObject,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    'данные получены',
+                    style: Theme.of(context).textTheme.headline6,
+                  );
+                }
+
+                return Center(
+                  child: SpinKitDoubleBounce(
+                    color: Colors.black,
+                    size: 100,
+                  ),
+                );
+
+              },
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
 
