@@ -1,5 +1,5 @@
 # Прогноз погоды на flutter
 Тестовое приложение на flutter
-```bash
-pip install foobar
+```git
+https://github.com/wveik/FlutterWeatherApp.git
 ```
