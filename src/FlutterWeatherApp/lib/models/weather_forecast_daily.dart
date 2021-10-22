@@ -8,14 +8,14 @@ class WeatherForecast {
   });
   late final City city;
   late final String cod;
-  late final String message;
+  late final double message;
   late final int cnt;
   late final List<WeatherList> list;
 
   WeatherForecast.fromJson(Map<String, dynamic> json){
     city = City.fromJson(json['city']);
     cod = json['cod'];
-    message = json['message'];
+    message = json['message'].toDouble();
     cnt = json['cnt'];
     list = List.from(json['list']).map((e)=>WeatherList.fromJson(e)).toList();
   }
@@ -117,7 +117,7 @@ class WeatherList {
   late final int deg;
   late final double? gust;
   late final int clouds;
-  late final int? pop;
+  late final num? pop;
 
   WeatherList.fromJson(Map<String, dynamic> json){
     dt = json['dt'];
@@ -204,10 +204,10 @@ class FeelsLike {
   late final double morn;
 
   FeelsLike.fromJson(Map<String, dynamic> json){
-    day = json['day'];
-    night = json['night'];
-    eve = json['eve'];
-    morn = json['morn'];
+    day = json['day'].toDouble();
+    night = json['night'].toDouble();
+    eve = json['eve'].toDouble();
+    morn = json['morn'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
