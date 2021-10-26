@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_weather_app/api/weather_api.dart';
 import 'package:flutter_weather_app/models/weather_forecast_daily.dart';
 import 'package:flutter_weather_app/utils/constants.dart';
+import 'package:flutter_weather_app/widgets/city_view.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
@@ -12,21 +13,19 @@ class WeatherForecastScreen extends StatefulWidget {
 }
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
-
   late Future<WeatherForecast> forecastObject;
   String _cityName = 'London';
-
 
   @override
   void initState() {
     super.initState();
 
     forecastObject = WeatherApi().fetchWeatherForecast(city: _cityName);
-    forecastObject.then((weather) {
-      print("*******");
-      print(weather.list[0].weather[0].main);
-      print("*******");
-    });
+    // forecastObject.then((weather) {
+    //   print("*******");
+    //   print(weather.list[0].weather[0].main);
+    //   print("*******");
+    // });
   }
 
   @override
@@ -38,12 +37,12 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.my_location),
-          onPressed: () {  },
+          onPressed: () {},
         ),
         actions: [
           IconButton(
             icon: Icon(Icons.location_city),
-            onPressed: () {  },
+            onPressed: () {},
           ),
         ],
       ),
@@ -54,9 +53,11 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
               future: forecastObject,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Text(
-                    'данные получены',
-                    style: Theme.of(context).textTheme.headline6,
+                  return Column(
+                    children: [
+                      SizedBox(height: 50),
+                      CityView(snapshot: snapshot),
+                    ],
                   );
                 }
 
@@ -66,7 +67,6 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                     size: 100,
                   ),
                 );
-
               },
             ),
           )
@@ -75,5 +75,3 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     );
   }
 }
-
-
