@@ -12,12 +12,13 @@ class TempView extends StatelessWidget {
     var firstLine = forecastList[0];
 
     var icon = firstLine.getIconUrl();
-    var temp = firstLine.temp.day.ceil().toString();
+    var temp = firstLine.temp.day.round().toString();
     var description = firstLine.weather[0].description.toUpperCase();
 
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+
         children: [
           Image.network(
             icon,
