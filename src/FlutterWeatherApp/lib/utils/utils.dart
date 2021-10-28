@@ -3,8 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
-  static String getFormattedDate(DateTime dateTime) {
+  static String getFullFormattedDate(DateTime dateTime) {
     return DateFormat('EEE, MMM d, y').format(dateTime);
+  }
+
+  static String getDayFormattedDate(DateTime dateTime) {
+    return DateFormat('EEE').format(dateTime);
   }
 
   static getItem(IconData iconData, int value, String units) {

@@ -9,11 +9,11 @@ class TempView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var forecastList = snapshot.data!.list;
-    var firstLine = forecastList[0];
+    var firstItem = forecastList[0];
 
-    var icon = firstLine.getIconUrl();
-    var temp = firstLine.temp.day.round().toString();
-    var description = firstLine.weather[0].description.toUpperCase();
+    var icon = firstItem.getIconUrl();
+    var temp = firstItem.temp.day.round().toString();
+    var description = firstItem.weather[0].description.toUpperCase();
 
     return Container(
       child: Row(
@@ -30,7 +30,7 @@ class TempView extends StatelessWidget {
           Column(
             children: [
               Text(
-                '$temp °C',
+                '$temp°C',
                 style: TextStyle(
                   fontSize: 54,
                   color: Colors.black87,

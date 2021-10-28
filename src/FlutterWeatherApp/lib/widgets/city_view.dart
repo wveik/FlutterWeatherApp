@@ -28,7 +28,7 @@ class CityView extends StatelessWidget {
             ),
           ),
           Text(
-            '${Utils.getFormattedDate(dateTime)}',
+            '${Utils.getFullFormattedDate(dateTime)}',
             style: TextStyle(
               fontSize: 15,
             ),

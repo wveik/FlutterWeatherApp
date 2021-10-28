@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_weather_app/api/weather_api.dart';
 import 'package:flutter_weather_app/models/weather_forecast_daily.dart';
 import 'package:flutter_weather_app/utils/constants.dart';
+import 'package:flutter_weather_app/widgets/bottom_list_view.dart';
 import 'package:flutter_weather_app/widgets/city_view.dart';
 import 'package:flutter_weather_app/widgets/detail_view.dart';
 import 'package:flutter_weather_app/widgets/temp_view.dart';
@@ -35,7 +36,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text(Constants.BASE_NAME),
+        title: Text("МОЛКОМ погода"),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.my_location),
@@ -63,6 +64,8 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                       TempView(snapshot: snapshot),
                       SizedBox(height: 50),
                       DetailView(snapshot: snapshot),
+                      SizedBox(height: 50),
+                      BottomListView(snapshot: snapshot),
                     ],
                   );
                 }

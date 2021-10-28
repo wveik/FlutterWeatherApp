@@ -11,11 +11,11 @@ class DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var forecastList = snapshot.data!.list;
-    var firstLine = forecastList[0];
+    var firstItem = forecastList[0];
 
-    var pressure = firstLine.pressure * 0.750062;
-    var humidity = firstLine.humidity;
-    var wind = firstLine.speed;
+    var pressure = firstItem.pressure * 0.750062;
+    var humidity = firstItem.humidity;
+    var wind = firstItem.speed;
 
     return Container(
       child: Row(
