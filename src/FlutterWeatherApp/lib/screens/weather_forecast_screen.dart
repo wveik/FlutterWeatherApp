@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_weather_app/api/weather_api.dart';
 import 'package:flutter_weather_app/models/weather_forecast_daily.dart';
-import 'package:flutter_weather_app/utils/constants.dart';
+import 'package:flutter_weather_app/screens/city_screen.dart';
 import 'package:flutter_weather_app/widgets/bottom_list_view.dart';
 import 'package:flutter_weather_app/widgets/city_view.dart';
 import 'package:flutter_weather_app/widgets/detail_view.dart';
@@ -17,7 +17,7 @@ class WeatherForecastScreen extends StatefulWidget {
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   late Future<WeatherForecast> forecastObject;
-  String _cityName = 'London';
+  String _cityName = "Moscow";
 
   @override
   void initState() {
@@ -45,7 +45,22 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.location_city),
-            onPressed: () {},
+            onPressed: () async {
+              var selectedCity = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CityScreen(),
+                  ));
+
+              if (selectedCity == null)
+                return;
+
+              setState(() {
+                _cityName = selectedCity;
+                forecastObject = WeatherApi().fetchWeatherForecast(city: _cityName);
+              });
+
+            },
           ),
         ],
       ),
